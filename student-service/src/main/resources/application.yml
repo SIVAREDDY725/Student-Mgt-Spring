@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: STUDENT-SERVICE
+
+  datasource:
+    url: jdbc:h2:file:/data/STUDENT_DB
+    driverClassName: org.h2.Driver
+    username: student
+    password: student
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: update
+  h2:
+    console.enabled: true
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+#Swagger
+springdoc:
+  swagger-ui:
+    path: /student/swagger-ui.html
+    defaultModelsExpandDepth: -1
+  api-docs:
+    path: /student/api-docs
+  packagesToScan: com.avis.student.controller
+
+

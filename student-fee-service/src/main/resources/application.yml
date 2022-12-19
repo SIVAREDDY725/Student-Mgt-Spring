@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: STUDENT-FEE-SERVICE
+
+  datasource:
+    url: jdbc:h2:file:/data/FEE_DB
+    driverClassName: org.h2.Driver
+    username: test
+    password: test
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate.ddl-auto: update
+  h2:
+    console.enabled: true
+
+server:
+  port: 8082
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    hostname: localhost
+
+#Swagger
+springdoc:
+  swagger-ui:
+    path: /feePayment/swagger-ui.html
+    defaultModelsExpandDepth: -1
+  api-docs:
+    path: /feePayment/api-docs
+  packagesToScan: com.avis.fee.controller
+
+feign:
+  hystrix:
+    enabled: true
+  circuitbreaker:
+    enabled: true
+    alphanumeric-ids:
+      enabled: true
+resilience4j:
+  circuitbreaker:
+    instances:
+      PaymentFeignClientgetPaymentDetails:
+        minimumNumberOfCalls: 10
+      PaymentFeignClientprocessPayment:
+        minimumNumberOfCalls: 10
+      StudentFiegnClientgetStudent:
+        minimumNumberOfCalls: 10
+  timelimiter:
+    instances:
+      PaymentFeignClientgetPaymentDetails:
+        timeoutDuration: 10
+      PaymentFeignClientprocessPayment:
+        timeoutDuration: 10
+      StudentFiegnClientgetStudent:
+        timeoutDuration: 10
+
+
