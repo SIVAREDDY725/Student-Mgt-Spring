@@ -2,7 +2,13 @@
 
 The services in this project are designed with microservice architecture.
 
-Each microservice exposes REST API interfaces that can be accessed through OpenAPI endpoint (/swagger-ui.html)
+Each microservice exposes REST API interfaces that can be accessed through OpenAPI endpoint.
+
+http://localhost:8080/student/swagger-ui.html
+
+http://localhost:8082/feePayment/swagger-ui.html
+
+http://localhost:8081/payment/swagger-ui.html
 
 ## Pre-Requisites
 OpenJdk-17
